@@ -77,17 +77,17 @@ const userPut = async(req,res) => {
 
 const userDelete = async(req,res) => {
     const { id } = req.params;
-    // Fisacamen lo barramos
-    // const user  = await User.findByIdAndDelete( id )
-    console.log(id);
-    const user = await User.findByIdAndUpdate( id, { state: false })
+    const uid = req.uid;
+    const user = await User.findByIdAndUpdate( id, { state: false });
+    const userAuthenticated = req.user;
     res.json({
-        user
+        user,
+        userAuthenticated
     });
 };
 const usersPath = (req,res) => {
     res.json({
-        message: 'Request path',
+        user
     });
 };
 
